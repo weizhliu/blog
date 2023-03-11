@@ -16,5 +16,6 @@ defmodule Blog.Posts.Post do
     post
     |> cast(attrs, [:title, :content, :slug, :description])
     |> validate_required([:title, :content, :slug, :description])
+    |> unique_constraint(:slug)
   end
 end

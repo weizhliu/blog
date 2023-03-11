@@ -9,6 +9,27 @@ defmodule Blog.Posts do
   alias Blog.Posts.Post
 
   @doc """
+  Gets a single post by slug
+
+  Raises `Ecto.NoResultsError` if the Post does not exist.
+
+  ## Examples
+
+      iex> get_post_by_slug!("a_slug_of_a_post")
+      %Post{}
+
+      iex> get_post_by_slug!("no_such_post")
+      ** (Ecto.NoResultsError)
+
+  """
+  @spec get_post_by_slug!(String.t()) :: Post.t()
+  def get_post_by_slug!(slug) do
+    Post
+    |> where(slug: ^slug)
+    |> Repo.one!()
+  end
+
+  @doc """
   Returns the list of posts.
 
   ## Examples

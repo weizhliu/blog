@@ -20,8 +20,18 @@ defmodule Blog.PostsTest do
       assert Posts.get_post!(post.id) == post
     end
 
+    test "get_post_by_slug!/1 returns the post with given slug" do
+      post = post_fixture()
+      assert Posts.get_post_by_slug!(post.slug) == post
+    end
+
     test "create_post/1 with valid data creates a post" do
-      valid_attrs = %{content: "some content", description: "some description", slug: "some slug", title: "some title"}
+      valid_attrs = %{
+        content: "some content",
+        description: "some description",
+        slug: "some slug",
+        title: "some title"
+      }
 
       assert {:ok, %Post{} = post} = Posts.create_post(valid_attrs)
       assert post.content == "some content"
@@ -36,7 +46,13 @@ defmodule Blog.PostsTest do
 
     test "update_post/2 with valid data updates the post" do
       post = post_fixture()
-      update_attrs = %{content: "some updated content", description: "some updated description", slug: "some updated slug", title: "some updated title"}
+
+      update_attrs = %{
+        content: "some updated content",
+        description: "some updated description",
+        slug: "some updated slug",
+        title: "some updated title"
+      }
 
       assert {:ok, %Post{} = post} = Posts.update_post(post, update_attrs)
       assert post.content == "some updated content"
