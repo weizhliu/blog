@@ -82,13 +82,6 @@ defmodule Blog.Accounts.User do
       changeset
       |> unsafe_validate_unique(:email, Blog.Repo)
       |> unique_constraint(:email)
-      |> validate_change(:email, fn :email, _ ->
-        if Blog.Repo.aggregate(__MODULE__, :count) != 0 do
-          [email: "One account only for now."]
-        else
-          []
-        end
-      end)
     else
       changeset
     end
