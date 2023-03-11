@@ -1,0 +1,23 @@
+<section class="grid gap-4">
+  <article
+    :for={post <- @posts}
+    class="bg-stone-50 hover:cursor-pointer p-8 grid gap-4"
+    phx-click={JS.dispatch("click", to: "#post" <> post.slug)}
+  >
+    <header class="flex justify-center">
+      <h2 class="font-bold text-2xl text-stone-800"><%= post.title %></h2>
+    </header>
+    <div class="text-stone-900">
+      <%= post.description %>
+    </div>
+    <div class="flex justify-end">
+      <.link
+        href={~p"/#{post.slug}"}
+        id={"post" <> post.slug}
+        class="text-sm font-semibold text-stone-700"
+      >
+        Read more
+      </.link>
+    </div>
+  </article>
+</section>
