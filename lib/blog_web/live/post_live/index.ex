@@ -34,7 +34,7 @@ defmodule BlogWeb.PostLive.Index do
 
   @impl true
   def handle_info({BlogWeb.PostLive.FormComponent, {:saved, post}}, socket) do
-    {:noreply, stream_insert(socket, :posts, post)}
+    {:noreply, stream_insert(socket, :posts, post, at: 0)}
   end
 
   @impl true

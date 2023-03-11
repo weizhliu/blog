@@ -16,6 +16,13 @@ defmodule Blog.Posts.Post do
     post
     |> cast(attrs, [:title, :content, :slug, :description])
     |> validate_required([:title, :content, :slug, :description])
+    |> update_change(:slug, &replace_reserved/1)
     |> unique_constraint(:slug)
+  end
+
+  def replace_reserved(slug) do
+    String.to_charlist(slug)
+    |> Enum.map(fn c -> if(URI.char_unreserved?(c), do: c, else: ?_) end)
+    |> List.to_string()
   end
 end
