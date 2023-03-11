@@ -4,8 +4,18 @@ defmodule BlogWeb.PostLiveTest do
   import Phoenix.LiveViewTest
   import Blog.PostsFixtures
 
-  @create_attrs %{content: "some content", description: "some description", slug: "some slug", title: "some title"}
-  @update_attrs %{content: "some updated content", description: "some updated description", slug: "some updated slug", title: "some updated title"}
+  @create_attrs %{
+    content: "some content",
+    description: "some description",
+    slug: "some slug",
+    title: "some title"
+  }
+  @update_attrs %{
+    content: "some updated content",
+    description: "some updated description",
+    slug: "some updated slug",
+    title: "some updated title"
+  }
   @invalid_attrs %{content: nil, description: nil, slug: nil, title: nil}
 
   defp create_post(_) do
