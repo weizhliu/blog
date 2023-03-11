@@ -4,7 +4,7 @@
       <%= @post.title %>
     </h1>
   </header>
-  <div class="text-stone-900">
-    <%= @post.content %>
+  <div class="prose">
+    <%= raw(@post.content) %>
   </div>
 </article>

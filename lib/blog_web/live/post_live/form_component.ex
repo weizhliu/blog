@@ -20,9 +20,9 @@ defmodule BlogWeb.PostLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:title]} type="text" label="Title" />
-        <.input field={@form[:content]} type="text" label="Content" />
         <.input field={@form[:slug]} type="text" label="Slug" />
-        <.input field={@form[:description]} type="text" label="Description" />
+        <.input field={@form[:description]} type="textarea" label="Description" />
+        <.input field={@form[:content]} type="textarea" label="Content" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Post</.button>
         </:actions>
