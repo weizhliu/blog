@@ -1,0 +1,46 @@
+# fly.toml file generated for weizheng-blog on 2023-03-11T23:23:20+08:00
+
+app = "weizheng-blog"
+kill_signal = "SIGTERM"
+kill_timeout = 5
+primary_region = "nrt"
+processes = []
+
+[env]
+  PHX_HOST = "weiz.tw"
+  PORT = "8080"
+  DATABASE_PATH = "/mnt/weizheng_blog_volume/blog.db"
+
+[experimental]
+  auto_rollback = true
+
+[mounts]
+  source="weizheng_blog_volume"
+  destination="/mnt/weizheng_blog_volume"
+
+
+[[services]]
+  http_checks = []
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 1000
+    soft_limit = 1000
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
