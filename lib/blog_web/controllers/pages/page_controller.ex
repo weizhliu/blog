@@ -10,6 +10,6 @@ defmodule BlogWeb.PageController do
 
   def show(conn, %{"slug" => slug} = _params) do
     post = Posts.get_post_by_slug!(slug)
-    render(conn, :show, post: post)
+    render(conn, :show, post: post, page_title: post.slug)
   end
 end
